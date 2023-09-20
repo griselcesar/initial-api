@@ -3,6 +3,7 @@ import {
   getAllClients,
   getOneClientById,
   deleteClientById,
+  updateClientById,
 } from "../services/clients.services.js";
 
 const getAllClientsController = async (req, res, next) => {
@@ -68,9 +69,31 @@ const deleteClientByIdController = async (req, res, next) => {
   return res.status(200).json({ message: "cliente eliminado" });
 };
 
+const updateClientByIdController = async (req, res, next) => {
+  const { id } = req.params;
+  const { code, name, address, phone, type } = req.body;
+  const newDataClient = { code, name, address, phone, type };
+  const client = await updateClientById(id, newDataClient);
+  if (!client)
+    return res.status(404).json({ message: "cliente no encontrado" });
+
+  return res.status(200).json({
+    message: "cliente actualizado",
+    client: {
+      id: client._id,
+      name: client.name,
+      code: client.code,
+      type: client.type,
+      phone: client.phone,
+      address: client.address,
+    },
+  });
+};
+
 export {
   getAllClientsController,
   getOneClientByIdController,
   createOneClientController,
   deleteClientByIdController,
+  updateClientByIdController,
 };

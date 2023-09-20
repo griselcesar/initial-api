@@ -20,6 +20,13 @@ const deleteClientById = async (id) => {
   return client;
 };
 
+const updateClientById = async (id, newDataClient) => {
+  const client = await clientModel.findByIdAndUpdate(id, newDataClient, {
+    new: true,
+  });
+  return client;
+};
+
 const findClientByCode = async (code) => {
   const client = await clientModel.findOne({ code });
   return client;
@@ -31,4 +38,5 @@ export {
   createOneClient,
   findClientByCode,
   deleteClientById,
+  updateClientById,
 };

@@ -4,8 +4,9 @@ import {
   deleteClientByIdController,
   getAllClientsController,
   getOneClientByIdController,
+  updateClientByIdController,
 } from "../controllers/clients.controllers.js";
-import { createClientDTO } from "../validators/ClientDTO.js";
+import { createClientDTO, updateClientDTO } from "../validators/ClientDTO.js";
 
 const clientsRouter = Router();
 
@@ -16,6 +17,7 @@ clientsRouter
 clientsRouter
   .route("/:id")
   .get(getOneClientByIdController)
-  .delete(deleteClientByIdController);
+  .delete(deleteClientByIdController)
+  .put(updateClientDTO, updateClientByIdController);
 
 export default clientsRouter;
