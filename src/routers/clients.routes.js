@@ -5,7 +5,7 @@ import {
   getAllClientsController,
   getOneClientByIdController,
 } from "../controllers/clients.controllers.js";
-import { createClientDTO } from "../validators/newClientDTO.js";
+import { createClientDTO } from "../validators/ClientDTO.js";
 
 const clientsRouter = Router();
 
